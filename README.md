@@ -1,3 +1,3 @@
 # GerenciamentoDeEstacionamento
 
-Criadores
+Como configurar e executar o projeto: 
