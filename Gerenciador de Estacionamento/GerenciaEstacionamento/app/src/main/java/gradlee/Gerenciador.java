@@ -7,8 +7,9 @@ import java.io.File;
 
 public class Gerenciador{
     //Endereço dos arquivos CSV. Precisam ser alterados para suprir as necessidades de cada máquina para procurar os arquivos csv "generate" e "in".
-    private static final String CSVPathOUT = "C:\\Users\\gabri\\OneDrive\\Documentos\\Códigos\\Java\\TRABALHO ISAAC\\csv\\generate.csv";
-    private static final String CSVPathIN = "C:\\Users\\gabri\\OneDrive\\Documentos\\Códigos\\Java\\TRABALHO ISAAC\\csv\\in.csv";
+    private static final String CSVPathOUT = "C:\\Caminho\\csv\\generate.csv";
+    private static final String CSVPathIN = "C:\\Caminho\\in.csv";
+
 
     Scanner sc = new Scanner(System.in);
     Veiculos veiculos[] = new Veiculos[50];
