@@ -11,7 +11,7 @@ Siga as instruções abaixo para clonar e configurar o projeto:
 
 ```bash
 # Clone o repositório
-https://github.com/Seu-Usuario/GerenciamentoDeEstacionamento
+https://github.com/Cogah/GerenciamentoDeEstacionamento.git
 
 # Baixe os arquivos da pasta
 Gerenciamento de Estacionameto
