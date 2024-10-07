@@ -11,6 +11,12 @@ public class Veiculos {
     int horarioSaida;
     private float tarifa = 5;
 
+
+    
+    
+    public float getTarifa() {
+        return tarifa;
+    }
     
     public Veiculos(String placa, String modelo, int horarioEntrada) {
         this.placa = placa;

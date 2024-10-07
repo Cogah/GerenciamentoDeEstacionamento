@@ -1,3 +1,4 @@
+
 package gradlee;
 
 import java.io.FileWriter;
@@ -7,8 +8,8 @@ import java.io.File;
 
 public class Gerenciador{
 
-    private static final String CSVPathOUT = "C:\\Users\\24070020\\Downloads\\java-20241007T114010Z-001\\java\\csv\\generate.csv";
-    private static final String CSVPathIN = "C:\\Users\\24070020\\Downloads\\java-20241007T114010Z-001\\java\\csv\\in.csv";
+    private static final String CSVPathOUT = "C:\\Users\\gabri\\OneDrive\\Documentos\\Códigos\\Java\\Gerenciador de Estacionamento\\csv\\generate.csv";
+    private static final String CSVPathIN = "C:\\Users\\gabri\\OneDrive\\Documentos\\Códigos\\Java\\Gerenciador de Estacionamento\\csv\\in.csv";
     //Mudar os caminhos do CSV para cada pc
 
     Scanner sc = new Scanner(System.in);
@@ -76,7 +77,7 @@ public class Gerenciador{
     }
     
     public void menu(){
-        System.out.println("\n    Bem vindo ao Sistema de Veículos:\n Digite o número para escolher\n\n1.Cadastrar novo veículo\n2.Saída de um veículo(nao tira do sistema\n3.Listar os veículos no Estacionamento\n4.Gerar arquivo CSV\n5.Encerrar sistema");
+        System.out.println("\n    Bem vindo ao Sistema de Veículos:\n Digite o número para escolher\n\n1.Cadastrar novo veículo\n2.Saída de um veículo\n3.Listar os veículos no Estacionamento\n4.Gerar arquivo CSV\n5.Encerrar sistema");
         op = sc.nextInt();
 
         switch (op) {
@@ -158,5 +159,3 @@ public class Gerenciador{
     }
 
     }
-
-

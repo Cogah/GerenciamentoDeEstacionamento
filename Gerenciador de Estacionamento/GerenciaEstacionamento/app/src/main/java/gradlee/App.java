@@ -12,7 +12,6 @@ public class App {
         do {
             gerencia.menu();
         }while(gerencia.op != 5);
-
-
+        
     }
 }
