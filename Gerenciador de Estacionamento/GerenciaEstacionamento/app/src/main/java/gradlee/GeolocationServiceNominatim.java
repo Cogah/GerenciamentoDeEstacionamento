@@ -31,9 +31,7 @@ public class GeolocationServiceNominatim {
                 return;
             }
 
-            // Imprime a resposta completa para depuração
             String jsonResponse = response.body().string();
-            System.out.println("Resposta da API: " + jsonResponse);
 
             if (jsonResponse.contains("[]")) {
                 System.out.println("Nenhuma coordenada encontrada para o endereço.");
