@@ -6,10 +6,10 @@ import java.util.Scanner;
 import java.io.File;
 
 public class Gerenciador{
-    //Endereço dos arquivos CSV. Precisam ser alterados para suprir as necessidades de cada máquina para procurar os arquivos csv "generate" e "in".
-    private static final String CSVPathOUT = "C:\\Caminho\\csv\\generate.csv";
-    private static final String CSVPathIN = "C:\\Caminho\\in.csv";
 
+    private static final String CSVPathOUT = "C:\\Users\\24070020\\Downloads\\java-20241007T114010Z-001\\java\\csv\\generate.csv";
+    private static final String CSVPathIN = "C:\\Users\\24070020\\Downloads\\java-20241007T114010Z-001\\java\\csv\\in.csv";
+    //Mudar os caminhos do CSV para cada pc
 
     Scanner sc = new Scanner(System.in);
     Veiculos veiculos[] = new Veiculos[50];
@@ -17,32 +17,66 @@ public class Gerenciador{
     float tarifa;
     int op;
 
+    public void acharEndereco(){
+        GeolocationServiceNominatim geolocationService = new GeolocationServiceNominatim();// Instanciação do serviço de geolocalização
+        String endereco = "Avenida Alcindo Cacela 1523, Umarizal, Brazil";// Endereço do estacionamento
+        System.out.println("Coordenadas do estacionamento: ");
+        geolocationService.obterCoordenadas(endereco);
+    }
+    
     public void cadastro(String placa, String modelo, int horarioEntrada){
-        if(qntVeiculo < 50) {
-        veiculos[qntVeiculo] = new Veiculos();
-        veiculos[qntVeiculo].placa = placa;
-        veiculos[qntVeiculo].modelo = modelo;
-        veiculos[qntVeiculo].horarioEntrada = horarioEntrada;
-        qntVeiculo +=1;
-        }else{
-            System.out.println("Estacionamento cheio! Não é possível cadastrar mais veículos.");
+        for(int i=0;i<50;i++){
+            if(veiculos[i] == null) {
+                veiculos[i] = new Veiculos();
+                veiculos[i].placa = placa;
+                veiculos[i].modelo = modelo;
+                veiculos[i].horarioEntrada = horarioEntrada;
+                qntVeiculo +=1;
+                return;
+                }
         }
-        
+        System.out.println("Estacionamento cheio! Não é possível cadastrar mais veículos.");
     }
     public void cadastroInput() {
-        if (qntVeiculo < 50) {
+        for(int i=0;i<50;i++){
+            if(veiculos[i] == null) {
             Veiculos novoVeiculo = new Veiculos();
             novoVeiculo.Cadastrar();
-            veiculos[qntVeiculo] = novoVeiculo;
+            veiculos[i] = novoVeiculo;
             System.out.println("Veículo cadastrado via input: " + novoVeiculo.placa + ", " + novoVeiculo.modelo + ", " + novoVeiculo.horarioEntrada);
             qntVeiculo++;
-        } else {
-            System.out.println("Estacionamento cheio! Não é possível cadastrar mais veículos.");
+            return;
         }
+        
+        }
+        System.out.println("Estacionamento cheio! Não é possível cadastrar mais veículos.");
+    }
+
+    public void saida(){
+        System.out.println("Digite o numero do veículo que saiu:");
+        int v = sc.nextInt();
+        
+        System.out.println("Digite o horário de saída: ");
+        veiculos[v-1].horarioSaida = sc.nextInt();
+        veiculos[v-1].CalcularTarifa();
+        System.out.println("Tarifa a pagar: "+ veiculos[v-1].getTarifa());
+        veiculos[v-1] = null;
+        
+        Veiculos novoVeiculos[] = new Veiculos[50];
+        int j = 0;
+
+        for(int i=0;i<qntVeiculo;i++){
+            if (veiculos[i] != null) {
+                novoVeiculos[j] = veiculos[i];
+                j++;
+            }
+        }
+        veiculos = novoVeiculos;
+        qntVeiculo--;
     }
     
     public void menu(){
-        System.out.println("\n    Bem vindo ao Sistema de Veículos:\n Digite o número para escolher\n\n1.Cadastrar novo veículo\n2.Saída de um veículo(nao tira do sistema\n3.Listar os veículos no Estacionamento\n4.Localizar veículo(naofaznadaainda)\n5.Gerar arquivo CSV\n6.Encerrar sistema");
+        System.out.println("\n    Bem vindo ao Sistema de Veículos:\n Digite o número para escolher\n\n1.Cadastrar novo veículo\n2.Saída de um veículo(nao tira do sistema\n3.Listar os veículos no Estacionamento\n4.Gerar arquivo CSV\n5.Encerrar sistema");
         op = sc.nextInt();
 
         switch (op) {
@@ -50,22 +84,19 @@ public class Gerenciador{
               cadastroInput();
               break;
             case 2:
-              System.out.println("Digite o numero do veículo que saiu:");
-              int v = sc.nextInt();
-              veiculos[v-1].saida();
+              listagem();
+              saida();
               break;
             case 3:
               listagem();
               break;
             case 4:
-              //Localizar();
-              break;
-            case 5:
-            gerarArquivoCSV();
-              break;
-            case 6:
-              System.out.println("Obrigado pelo seu trabalho!");
+                gerarArquivoCSV();
                 break;
+            case 5:
+                System.out.println("Obrigado pelo seu trabalho!");
+                break;
+                
         }
     }
     
@@ -81,7 +112,7 @@ public class Gerenciador{
                                    ", Placa = " + veiculos[i].placa +
                                    ", Horário de Entrada = " + veiculos[i].horarioEntrada);
             } else {
-                System.out.println("Veículo na posição " + i + " é nulo.");
+                System.out.println("Veículo na posição " + i+1 + " é nulo.");
             }
         }
     }
@@ -125,5 +156,7 @@ public class Gerenciador{
             e.printStackTrace();
         }
     }
-}
+
+    }
+
 
